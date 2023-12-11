@@ -4,11 +4,7 @@ const { Schema } = mongoose;
 // * Creation of Notes Schema
 const notesSchema = new mongoose.Schema(
   {
-    Title: {
-      type: String,
-    },
-
-    Description: {
+    name: {
       type: String,
     },
 
