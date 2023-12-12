@@ -11,12 +11,15 @@ function App() {
 
   async function handleAllTodo() {
     try {
-      let res = await fetch("http://localhost:4000/get-all-notes", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let res = await fetch(
+        "https://todo-application-seven-mauve.vercel.app/get-all-notes",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const data = await res.json();
       setTodo(data.data);
       console.log(data.data);
@@ -45,7 +48,7 @@ function App() {
       name: name,
       complete: false,
     };
-    fetch("http://localhost:4000/create-notes", {
+    fetch("https://todo-application-seven-mauve.vercel.app/create-notes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -70,7 +73,9 @@ function App() {
   }
   async function handleupdateTodos(todoId) {
     try {
-      let fetchRes = await fetch(`http://localhost:4000/fetchnotes/${todoId}`);
+      let fetchRes = await fetch(
+        `https://todo-application-seven-mauve.vercel.app/fetchnotes/${todoId}`
+      );
       const currentData = await fetchRes.json();
 
       const updatedName = prompt("Enter updated name:", currentData.name);
@@ -79,13 +84,16 @@ function App() {
         name: updatedName,
         Completed: currentData.Completed, // Assuming you want to keep the existing Completed value
       };
-      let updateRes = await fetch("http://localhost:4000/updatenotes", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(notesData),
-      });
+      let updateRes = await fetch(
+        "https://todo-application-seven-mauve.vercel.app/updatenotes",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(notesData),
+        }
+      );
       const data = await updateRes.json();
       setStateManage((prev) => !prev);
 
@@ -97,13 +105,16 @@ function App() {
 
   async function handleDeleteTodos(id) {
     try {
-      let res = await fetch("http://localhost:4000/deletenotes", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id }),
-      });
+      let res = await fetch(
+        "https://todo-application-seven-mauve.vercel.app/deletenotes",
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id }),
+        }
+      );
       const data = await res.json();
       setStateManage((prev) => !prev);
       console.log(data.data);
@@ -119,7 +130,7 @@ function App() {
       return;
     }
     const todoIdsToDelete = completedTodos.map((todo) => todo.id);
-    fetch("http://localhost:4000/clear-complete", {
+    fetch("https://todo-application-seven-mauve.vercel.app/clear-complete", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -140,12 +151,15 @@ function App() {
   }
   async function deleteAllTodos() {
     try {
-      const res = await fetch("http://localhost:4000/delete-all-notes", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        "https://todo-application-seven-mauve.vercel.app/delete-all-notes",
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const data = await res.json();
       setStateManage((prev) => !prev);
       console.log(data.data);
