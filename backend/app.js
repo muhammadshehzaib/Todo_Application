@@ -13,6 +13,10 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: false }));
 
+app.get("/", (req, res) => {
+  res.status(200).json({ msg: "Success" });
+});
+
 // Set CORS headers manually
 // Add middleware to set CORS headers
 // app.use((req, res, next) => {
